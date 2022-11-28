@@ -5,12 +5,10 @@ const path = require('path');
 console.log(__dirname);
 
 const MASTER_KEY = process.env.MASTER_KEY || 'masterKey';
-const CLOUD_CODE_MAIN =
-  process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.ts';
+const CLOUD_CODE_MAIN = 'src/cloud/main.ts';
 const APP_ID = process.env.APP_ID || 'myAppId';
-const parse_port = process.env.PARSE_PORT || 1337;
-const SERVER_URL =
-  process.env.SERVER_URL || `http://localhost:${parse_port}/parse`; // Don't forget to change to https if needed
+const parse_port = process.env.PARSE_PORT || 1337; //  process.env.SERVER_URL ||
+const SERVER_URL = `http://localhost:${parse_port}/parse`; // Don't forget to change to https if needed
 let DATABASE_URI =
   process.env.DATABASE_URI || process.env.MONGODB_URI;
 
@@ -42,12 +40,15 @@ app.get('/', async (req, res) => {
   });
 });
 
-// app.use('/parse', api);
+app.use('/parse', api);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
 
 app.listen(parse_port, function () {
-  console.log('parse-server-example running on port 1337.');
+  console.log(
+    'parse-server-example running on port  1337.',
+    SERVER_URL
+  );
 });
