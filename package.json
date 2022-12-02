@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "nodemon src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "dashboard": "parse-dashboard --config parse-dashboard-config.json"
   },
   "dependencies": {
     "@types/parse": "^3.0.1",
