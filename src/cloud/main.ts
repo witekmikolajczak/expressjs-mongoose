@@ -1,3 +1,2 @@
-Parse.Cloud.define('parse_server_test', (req) => {
-  return req;
-});
+import './auth/api';
+import './product/api';
