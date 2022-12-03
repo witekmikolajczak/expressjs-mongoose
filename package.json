@@ -9,7 +9,8 @@
     "dev": "nodemon src/index.ts",
     "build": "tsc",
     "start": "ts-node dist/index.js",
-    "dashboard": "parse-dashboard --config parse-dashboard-config.json"
+    "dashboard": "parse-dashboard --config parse-dashboard-config.json",
+    "db:recreate": "ts-node src/database/schemaRecreate.ts"
   },
   "dependencies": {
     "@types/parse": "^3.0.1",
@@ -17,6 +18,7 @@
     "express": "^4.17.1",
     "mongoose": "^5.12.5",
     "parse": "^3.5.1",
+    "parse-dashboard": "^5.0.0",
     "parse-server": "^5.4.0",
     "path": "^0.12.7"
   },
