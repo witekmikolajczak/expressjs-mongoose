@@ -29,6 +29,7 @@ const dashboard = new ParseDashboard({
       appId: PARSE_SERVER_APP_ID,
       masterKey: PARSE_SERVER_MASTER_KEY,
       appName: PARSE_SERVER_APP_NAME,
+      allowInsecureHTTP:true
     },
   ],
   users: [
@@ -37,7 +38,6 @@ const dashboard = new ParseDashboard({
       pass: PARSE_DASHBOARD_PASSWORD
     },
   ],
-  allowInsecureHTTP:true
 });
 
 const app = express();
