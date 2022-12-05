@@ -45,9 +45,14 @@ app.use(express.json());
 app.use(express.raw({ type: 'application/vnd.custom-type' }));
 app.use(express.text({ type: 'text/html' }));
 
+console.log(PARSE_SERVER_URL);
+
+app.get('/', ()=>{
+  return 'REST API'
+})
 app.use('/parse', api);
 app.use('/dashboard', dashboard);
 
 app.listen(PARSE_SERVER_PORT, () => {
-  console.log(`Example app listening at http://localhost:${PARSE_SERVER_PORT}`);
+  console.log(`Example app listening at http://${PARSE_SERVER_URL}:${PARSE_SERVER_PORT}`);
 });
