@@ -6,12 +6,12 @@
   "author": "Faraz Patankar",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/index.ts",
+    "dev": "nodemon --quiet -r dotenv/config src/index.ts dotenv_config_path=./.env",
     "build": "tsc",
     "start": "ts-node dist/index.js",
-    "dashboard": "parse-dashboard --config parse-dashboard-config.json",
     "db:recreate": "ts-node src/database/schemaRecreate.ts"
   },
+  
   "dependencies": {
     "@types/parse": "^3.0.1",
     "dotenv": "^16.0.3",
