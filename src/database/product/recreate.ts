@@ -3,11 +3,11 @@ import { productSchema } from "./schema";
 const dbs = ['Product'];
 
 export const schemaDelete = async () => {
-  dbs.forEach(async (f) => {
-    const schema = new Parse.Schema(f);    
+  for(let i =0 ;i<dbs.length;i++){
+    const schema = new Parse.Schema(dbs[i])
     await schema.purge();
     await schema.delete();
-  });
+  }
 };
 
 export const schemaCreate = async ()=>{
