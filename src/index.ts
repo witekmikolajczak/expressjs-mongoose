@@ -37,6 +37,7 @@ const dashboard = new ParseDashboard({
       pass: PARSE_DASHBOARD_PASSWORD
     },
   ],
+  allowInsecureHTTP:true
 });
 
 const app = express();
