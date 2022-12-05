@@ -1,2 +1,2 @@
-import './auth/api';
-import './product/api';
+require('./auth/api');
+require('./product/api');

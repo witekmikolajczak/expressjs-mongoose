@@ -1,4 +1,4 @@
-import './config'
+require('./config')
 // delete
 import {schemaDelete as productDelete} from './product/recreate'
 import { schemaDelete as userDelete } from './user/recreate'
@@ -17,7 +17,7 @@ async function createSchema() {
 }
 
 async function dbReacreate(){
-     await deleteSchema()
+    await deleteSchema()
     await createSchema()
     
     
