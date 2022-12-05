@@ -1,2 +1,2 @@
-require('./auth/api');
+require('./user/api');
 require('./product/api');
