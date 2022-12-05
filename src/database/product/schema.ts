@@ -4,6 +4,7 @@ const product = async () => {
   schema.addString('productName', { required: true });
   schema.addString('productType', { required: true });
   schema.addString('productUnit', { required: true });
+  schema.addNumber('productCount', { required: true });
   schema.addRelation('createdBy', '_User');
   await schema.save();
 };
