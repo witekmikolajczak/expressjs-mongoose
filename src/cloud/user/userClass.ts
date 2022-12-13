@@ -7,6 +7,8 @@ export class UserClass implements UserClassInterface{
         relationName: string,
     ): Promise<void>
     {
+        console.log('-----------------\nHERE---------------');
+        console.log(relationObject);
         user.relation(relationName).add(relationObject)
         await user.save(undefined,{useMasterKey:true})
     }

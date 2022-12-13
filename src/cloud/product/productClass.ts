@@ -4,28 +4,33 @@ export class ProductClass implements ProductClassInterface {
     
     async Create(
         user: Parse.User<Parse.Attributes>,
-        data:Parse.Cloud.Params
-    ): Promise<ProductCreateReturnInterface>{
-      
-        const userClass = new UserClass()        
-        const Product = new Parse.Object('Product')
-        Product.set('productName', data.productName)
-        Product.set('productType', data.productType)
-        Product.set('productUnit', data.productUnit)
-        Product.set('productCount', data.productCount)
-        Product.relation('createdBy').add(user)
-        const newProduct = await Product.save()
-        await userClass.AddToRelation(user,newProduct,'products')
+        productCollection:ProductCreateReturnInterface[]
+    ): Promise<ProductCreateReturnInterface[]>{
+        const resultArray:ProductCreateReturnInterface[]=[]
+        for (const product of productCollection) {
+            const userClass = new UserClass()   
+            const Product = new Parse.Object('Product')
+            Product.set('productName', product.productName)
+            Product.set('productType', product.productType)
+            Product.set('productUnit', product.productUnit)
+            Product.set('productCount', Number(product.productCount))
+            Product.relation('createdBy').add(user)
+            await Product.save().then((res)=>{
+                userClass.AddToRelation(user,res,'products')
+                const result = {
+                    id: res.id,
+                    productName: res.get('productName'),
+                    productType: res.get('productType'),
+                    productUnit: res.get('productUnit'),
+                    productCount: res.get('productCount'),
+                    createdBy: res.relation('createdBy')
+                }
+                resultArray.push(result)
+            })            
+            
 
-        const result = {
-            id: newProduct.id,
-            productName: newProduct.get('productName'),
-            productType: newProduct.get('productType'),
-            productUnit: newProduct.get('productUnit'),
-            productCount: newProduct.get('productCount'),
-            createdBy: newProduct.relation('createdBy')
         }
-        return result
+        return resultArray
     }
 
     async Collection(

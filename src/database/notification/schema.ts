@@ -4,7 +4,7 @@ const notification = async () => {
   const schema = new Parse.Schema('Notification');
   schema.addString('type', { required: true });
   schema.addBoolean('active', { required: true });
-  schema.addRelation('createdByTeam', '_Team');
+  schema.addRelation('createdByTeam', 'Team');
   schema.addRelation('sendToUser', '_User')
   await schema.save();
 };
