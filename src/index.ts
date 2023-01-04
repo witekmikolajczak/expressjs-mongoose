@@ -1,4 +1,5 @@
 import express from 'express';
+import { logger } from "./logger/log";
 require('dotenv').config();
 const ParseServer = require('parse-server').ParseServer;
 const ParseDashboard = require('parse-dashboard');
@@ -47,8 +48,6 @@ app.use(express.json());
 app.use(express.raw({ type: 'application/vnd.custom-type' }));
 app.use(express.text({ type: 'text/html' }));
 
-console.log(PARSE_SERVER_URL);
-
 app.get('/', ()=>{
   return 'REST API'
 })
@@ -56,5 +55,5 @@ app.use('/parse', api);
 app.use('/dashboard', dashboard);
 
 app.listen(PARSE_SERVER_PORT, () => {
-  console.log(`Example app listening at http://${PARSE_SERVER_URL}:${PARSE_SERVER_PORT}`);
+  logger.info(`Parse dashboard listening at http://localhost:4040/dashboard`);
 });

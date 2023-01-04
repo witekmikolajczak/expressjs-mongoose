@@ -6,26 +6,27 @@
   "author": "Faraz Patankar",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --quiet -r dotenv/config src/index.ts dotenv_config_path=./.env",
+    "dev": "nodemon --quiet -r dotenv/config src/index.ts dotenv_config_path=./.env.dev",
     "build": "tsc",
     "start": "ts-node dist/index.js",
     "db:recreate": "ts-node src/database/schemaRecreate.ts"
   },
-  
   "dependencies": {
-    "@types/parse": "^3.0.1",
-    "dotenv": "^16.0.3",
     "express": "^4.17.1",
+    "mongodb": "^4.13.0",
     "mongoose": "^5.12.5",
     "parse": "^3.5.1",
     "parse-dashboard": "^5.0.0",
     "parse-server": "^5.4.0",
-    "path": "^0.12.7"
+    "winston": "^3.8.2"
   },
   "devDependencies": {
     "@types/express": "^4.17.11",
-    "@types/node": "^14.14.22",
+    "@types/node": "14.14.22",
+    "@types/parse": "^3.0.1",
+    "dotenv": "^16.0.3",
     "nodemon": "^2.0.7",
+    "path": "^0.12.7",
     "ts-node": "^10.9.1",
     "typescript": "^4.1.3"
   }

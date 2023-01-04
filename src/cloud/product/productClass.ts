@@ -1,22 +1,22 @@
 import { ProductClassInterface, ProductCreateReturnInterface } from "./types"
 import { UserClass } from "../user/userClass";
+import { logger } from "../../logger/log";
 export class ProductClass implements ProductClassInterface {
     
     async Create(
         user: Parse.User<Parse.Attributes>,
         productCollection:ProductCreateReturnInterface[]
     ): Promise<ProductCreateReturnInterface[]>{
-        const resultArray:ProductCreateReturnInterface[]=[]
+        const resultArray:ProductCreateReturnInterface[]=[]        
         for (const product of productCollection) {
-            const userClass = new UserClass()   
             const Product = new Parse.Object('Product')
             Product.set('productName', product.productName)
             Product.set('productType', product.productType)
             Product.set('productUnit', product.productUnit)
             Product.set('productCount', Number(product.productCount))
             Product.relation('createdBy').add(user)
-            await Product.save().then((res)=>{
-                userClass.AddToRelation(user,res,'products')
+            await Product.save().then(async (res)=>{
+                user.relation('products').add(res)
                 const result = {
                     id: res.id,
                     productName: res.get('productName'),
@@ -27,9 +27,8 @@ export class ProductClass implements ProductClassInterface {
                 }
                 resultArray.push(result)
             })            
-            
-
         }
+        await user.save(null, {useMasterKey:true})        
         return resultArray
     }
 
