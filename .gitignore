@@ -8,6 +8,7 @@ logs
 
 # testing
 /coverage
+/logs
 
 # production
 /build

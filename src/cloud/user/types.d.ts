@@ -1,10 +1,4 @@
 export interface UserClassInterface {
-    AddToRelation:(
-        user: Parse.User<Parse.Attributes>,
-        relationObject: Parse.Object<Parse.Attributes>,
-        relationName:string
-    ) => Promise<void>
-
     UserFullData:(
         user: Parse.User<Parse.Attributes>,
         params: Parse.Cloud.Params
