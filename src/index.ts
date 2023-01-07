@@ -55,5 +55,5 @@ app.use('/parse', api);
 app.use('/dashboard', dashboard);
 
 app.listen(PARSE_SERVER_PORT, () => {
-  logger.info(`Parse dashboard listening at http://localhost:4040/dashboard`);
+  logger.info(`Parse dashboard listening at ${PARSE_SERVER_URL}/dashboard`);
 });
